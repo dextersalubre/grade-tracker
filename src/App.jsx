@@ -12,32 +12,32 @@ const startingStudents = [
 
 function App() {
   const [students, setStudents] = useState(startingStudents)
- function handleAdd(name, grade) {
+  function handleAdd(name, grade) {
     setStudents([...students, { id: Date.now(), name, grade }])
     console.log(students.length)
   }
   function handleDelete(id) {
     setStudents(students.filter((s) => s.id !== id))
   }
- 
+
   const count = students.length
   let average = 0
   if (count > 0) {
     const total = students.reduce((sum, s) => sum + s.grade, 0)
     average = Math.round((total / count) * 10) / 10
   }
-   return (
-     <div className="min-h-screen bg-stone-100 text-stone-800">
-       <main className="mx-auto max-w-xl px-6 py-10">
+  return (
+    <div className="min-h-screen bg-stone-100 text-stone-800">
+      <main className="mx-auto max-w-xl px-6 py-10">
         <Header count={count} average={average} />
         <AddStudentForm onAdd={handleAdd} />
         <StudentList students={students} onDelete={handleDelete} />
-       </main>
-     </div>
-   )
- }
-  
- export default App
+      </main>
+    </div>
+  )
+}
+
+export default App
 
 
 
